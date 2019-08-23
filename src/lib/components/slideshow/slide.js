@@ -40,7 +40,11 @@ class Slideshow extends Component {
       document.querySelectorAll(`.images-wrap > div`),
       0
     );
-    this.width = document.querySelector('.react-slideshow-wrapper').clientWidth;
+    let parent = `div.${this.props.parentClassName}`;
+    this.width = document.querySelector(
+      parent,
+      '.react-slideshow-wrapper'
+    ).clientWidth;
     const fullwidth = this.width * (this.props.children.length + 2);
     this.imageContainer.style.width = `${fullwidth}px`;
     this.imageContainer.style.transform = `translate(-${this.width *
@@ -55,7 +59,11 @@ class Slideshow extends Component {
   }
 
   resizeListener() {
-    this.width = document.querySelector('.react-slideshow-wrapper').clientWidth;
+    let parent = `div.${this.props.parentClassName}`;
+    this.width = document.querySelector(
+      parent,
+      '.react-slideshow-wrapper'
+    ).clientWidth;
     this.setWidth();
   }
 
@@ -231,7 +239,8 @@ Slideshow.defaultProps = {
   infinite: true,
   autoplay: true,
   indicators: false,
-  arrows: true
+  arrows: true,
+  parentClassName: 'slide-container'
 };
 
 Slideshow.propTypes = {
@@ -241,6 +250,7 @@ Slideshow.propTypes = {
   indicators: PropTypes.bool,
   autoplay: PropTypes.bool,
   arrows: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  parentClassName: PropTypes.string
 };
 export default Slideshow;
